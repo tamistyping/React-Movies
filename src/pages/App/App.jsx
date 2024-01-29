@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter ,Route, Routes } from "react-router-dom";
 import "./App.css";
 import LoginPage from "../LoginPage/LoginPage";
-// import ActorListPage from "../ActorListPage/ActorListPage";
-// import MovieListPage from "../MovieListPage/MovieListPage";
-// import MovieDetailPage from "../MovieDetailPage/MovieDetailPage";
-// import NavBar from "../../components/NavBar/NavBar";
+import ActorListPage from "../ActorListPage/ActorListPage";
+import MovieListPage from "../MovieListPage/MovieListPage";
+import MovieDetailPage from "../MovieDetailPage/MovieDetailPage";
+import NavBar from "../../components/NavBar";
 
 export default function App() {
-  const [user, setUser] = useState("") // seeing whether logged in is true or false
+  const [user, setUser] = useState(null) // seeing whether logged in is true or false
 
 
   function handleLogin(username){
@@ -16,9 +16,28 @@ export default function App() {
   }
 
   return (
-    <main className='App'>
-      {user ? <div>Hey {user}</div> : <LoginPage onLogin={handleLogin} />}
-    </main>
-  )
+    <div className="mainPage">
+      <BrowserRouter>
+        <NavBar />
+        <main className="App">
+          {user ? (
+            <>
+              <div>Hey {user}</div>
+              <Routes>
+                <Route path="/" element={<MovieListPage />} />
+                <Route
+                  path="/movies/:movieName"
+                  element={<MovieDetailPage />}
+                />
+                <Route path="/actors" element={<ActorListPage />} />
+              </Routes>
+            </>
+          ) : (
+            <LoginPage onLogin={handleLogin} />
+          )}
+        </main>
+      </BrowserRouter>
+    </div>
+  );
 }
 

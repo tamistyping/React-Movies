@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #61dafb;
+  height: 100vh;
+}
+
+.nav {
+  margin-top: 3vmin;
+  color: white;
+}
+
+.title {
+  color: rgb(52, 49, 49);
+}

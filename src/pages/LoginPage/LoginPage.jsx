@@ -12,7 +12,7 @@ export default function LoginPage({onLogin}) {
 
   return (
     <>
-      <h1>Login Page</h1>
+      <h2 className="title">Enter Your Name!</h2>
       <form onSubmit={handleSubmit}>
         <input id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Your Name" />
         <button type="submit">Submit</button>
